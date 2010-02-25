@@ -4,12 +4,31 @@ require 'mongo'
 db = Mongo::Connection.new.db("test")
 
 things = db["news"]
-things.drop()
 
-things.create_index([["CreateTime", Mongo::DESCENDING]]);
-["CategoryID", "UserID", "Tags"].each { |c| 
-    things.create_index(c)
-}
+if ARGV.size == 1 && ARGV[0] == "init"
+
+    things.drop()
+    puts "news collection dropped"
+    
+    things.create_index([["CreateTime", Mongo::DESCENDING]]);
+    puts "index for CreateTime created."
+
+    ["CategoryID", "UserID", "Tags"].each { |c| 
+        things.create_index(c)
+        puts "index for #{c} created."
+    }
+    
+    puts "initialize completed."
+    exit
+end
+
+if ARGV.size == 2
+    begin_cat_id = ARGV[0].to_i
+    end_cat_id = ARGV[1].to_i
+elsif
+    begin_cat_id = 1
+    end_cat_id = 20000
+end
 
 all_tags = [];
 chars = ('a' .. 'z')
@@ -22,13 +41,14 @@ chars.each { |x|
 }
 
 tag_index = 0;
-id = 1
+id = (begin_cat_id - 1) * 55 + 1
 user_count = 10000
 begin_seconds = Time.mktime(2010, 1, 1).to_i # (1 Jan 2001)
+insert_count = 0
 
 start_time = Time.now.to_i
 
-(1 .. 20000).each do |cat_id| # 20000 × 55 = 1,100,000
+(begin_cat_id .. end_cat_id).each do |cat_id| # 20000 × 55 = 1,100,000
     count = (cat_id % 10 + 1) * 10
     count.times do 
         title = "This is title of news #{id}"
@@ -56,7 +76,7 @@ start_time = Time.now.to_i
             "SourceUrl" => source_url,
             "Status" => status
         })
-        
+
 =begin
         puts "=== #{id} ==="
         puts "Title: #{title}"
@@ -68,11 +88,13 @@ start_time = Time.now.to_i
         puts "SourceUrl: #{source_url}"
 =end
 
-        if (id % (100 * 1000) == 0)
-            end_time = Time.now.to_i
-            puts "#{id} records: #{end_time - start_time} seconds"
-        end
+        insert_count = insert_count + 1
         id = id + 1
+        
+        if (insert_count % (100 * 100) == 0)
+            end_time = Time.now.to_i
+            puts "#{insert_count} records: #{end_time - start_time} seconds"
+        end
     end
 end
 
