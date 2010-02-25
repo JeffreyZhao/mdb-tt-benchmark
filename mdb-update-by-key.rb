@@ -4,13 +4,20 @@ require 'mongo'
 db = Mongo::Connection.new.db("test")
 things = db["news"]
 
-time_to_update = 100 * 100 * 100
+if ARGV.size == 2
+	record_count = ARGV[0].to_i
+	times_to_update = ARGV[1].to_i
+elsif
+	record_count = 110 * 100 * 100
+	times_to_update = 100 * 100 * 100
+end
+
 start_time = Time.now.to_i
 update_count = 0
 
-time_to_update.times do
+times_to_update.times do
 
-	id = rand(110 * 10000) + 1
+	id = rand(record_count) + 1
     create_time = Time.now
 	title = "This is title of news #{id} - updated at #{create_time}"
     source = "source of news #{id} - updated at #{create_time}"
