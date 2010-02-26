@@ -1,0 +1,7 @@
+15:13:33 - 0 record - 0 second
+15:15:48 - 10000 records - 134.847 seconds
+15:19:46 - 20000 records - 372.589 seconds
+15:24:07 - 30000 records - 633.467 seconds
+15:27:57 - 40000 records - 863.027 seconds
+15:32:58 - 50000 records - 1164.229 seconds
+15:36:01 - 55000 records - 1347.199 seconds (completed)

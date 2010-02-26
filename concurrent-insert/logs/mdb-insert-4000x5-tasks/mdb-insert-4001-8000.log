@@ -1,0 +1,24 @@
+13:33:06 - 0 record - 0 second
+13:33:12 - 10000 records - 5.648 seconds
+13:33:18 - 20000 records - 12.076 seconds
+13:33:25 - 30000 records - 18.861 seconds
+13:33:32 - 40000 records - 25.651 seconds
+13:33:38 - 50000 records - 32.343 seconds
+13:33:45 - 60000 records - 39.13 seconds
+13:33:52 - 70000 records - 46.419 seconds
+13:34:00 - 80000 records - 53.492 seconds
+13:34:07 - 90000 records - 60.632 seconds
+13:34:14 - 100000 records - 67.803 seconds
+13:34:21 - 110000 records - 74.952 seconds
+13:34:28 - 120000 records - 82.172 seconds
+13:34:49 - 130000 records - 103.145 seconds
+13:34:54 - 140000 records - 107.856 seconds
+13:34:59 - 150000 records - 113.032 seconds
+13:35:07 - 160000 records - 120.976 seconds
+13:35:14 - 170000 records - 128.159 seconds
+13:35:22 - 180000 records - 135.646 seconds
+13:35:28 - 190000 records - 141.758 seconds
+13:35:35 - 200000 records - 148.761 seconds
+13:35:42 - 210000 records - 156.137 seconds
+13:35:49 - 220000 records - 162.798 seconds
+13:35:49 - 220000 records - 162.798 seconds (completed)
