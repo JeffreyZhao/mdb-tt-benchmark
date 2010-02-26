@@ -46,7 +46,8 @@ user_count = 10000
 begin_seconds = Time.mktime(2010, 1, 1).to_i # (1 Jan 2001)
 insert_count = 0
 
-start_time = Time.now.to_i
+start_time = Time.now
+puts start_time.strftime("%H:%M:%S - 0 record - 0 second")
 
 (begin_cat_id .. end_cat_id).each do |cat_id| # 20000 × 55 = 1,100,000
     count = (cat_id % 10 + 1) * 10
@@ -92,9 +93,13 @@ start_time = Time.now.to_i
         id = id + 1
         
         if (insert_count % (100 * 100) == 0)
-            end_time = Time.now.to_i
-            puts "#{insert_count} records: #{end_time - start_time} seconds"
+            end_time = Time.now
+            interval = (end_time.to_f - start_time.to_f).round(3)
+            puts end_time.strftime("%H:%M:%S - #{insert_count} records - #{interval} seconds")
         end
     end
 end
 
+end_time = Time.now
+interval = (end_time.to_f - start_time.to_f).round(3)
+puts end_time.strftime("%H:%M:%S - #{insert_count} records - #{interval} seconds (completed)")
